@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Special Gift 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI';
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    bottom: -10px;
+    color: rgba(255,255,255,0.7);
+    animation: floatUp 6s linear infinite;
+}
+@keyframes floatUp {
+    to { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* Title */
+h1 {
+    color: white;
+    margin-top: 30px;
+}
+
+/* Buttons */
+button {
+    padding: 14px 30px;
+    margin: 10px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+}
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px white;
+}
+
+/* Sections */
+.section {
+    display: none;
+    margin-top: 30px;
+    animation: fade 1s;
+}
+@keyframes fade {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+/* MEMORY TEXT */
+.memory-text {
+    color: white;
+    font-size: 20px;
+    width: 80%;
+    margin: auto;
+    line-height: 1.6;
+    animation: fade 3s;
+}
+
+/* PHOTO SLIDER FIXED */
+.slider {
+    width: 70%;
+    margin: auto;
+    overflow: hidden;
+}
+.slides {
+    display: flex;
+    width: 300%;
+    animation: slide 12s infinite;
+}
+.slides img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+@keyframes slide {
+    0% {transform: translateX(0);}
+    30% {transform: translateX(0);}
+    35% {transform: translateX(-100%);}
+    65% {transform: translateX(-100%);}
+    70% {transform: translateX(-200%);}
+    100% {transform: translateX(-200%);}
+}
+
+/* GIFT BOX */
+.gift-box {
+    font-size: 80px;
+    cursor: pointer;
+    animation: bounce 1.5s infinite;
+}
+@keyframes bounce {
+    50% { transform: translateY(-10px); }
+}
+
+/* Hidden gift content */
+.hidden {
+    display: none;
+}
+
+/* HUG BIG ANIMATION */
+.hug {
+    font-size: 120px;
+    animation: hugMove 2s infinite;
+}
+@keyframes hugMove {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>💖 A Gift From My Heart 💖</h1>
+
+<button onclick="show('mem')">Memories 💕</button>
+<button onclick="show('photo')">Photos 📸</button>
+<button onclick="show('gift')">Gift 🎁</button>
+
+<!-- MEMORY -->
+<div id="mem" class="section">
+    <h2 style="color:white;">Our Memories 💕</h2>
+    <p class="memory-text">
+        Every moment with you is special… 💖  
+        From laughter to silence, everything feels beautiful.  
+        These memories are not just pictures… they are my life ❤️
+        We met just two years ago, and at first, I never imagined that we would become such close friends. We didn’t even sit on the same bench, yet somehow we built a bond that feels stronger. It wasn’t planned, and it wasn’t expected, but it turned into something truly special.
+
+From those simple moments in the lab to all the little conversations we shared, everything slowly brought us closer. Each memory, no matter how small, means so much to me now. It’s amazing how a friendship can grow so deeply without us even realizing it at first.
+
+I feel truly grateful and blessed to have you in my life. Our bond is not about where we sit or how often we meet, but about how we understand and care for each other. You are not just my friend—you are someone very special to me, and I will always cherish this beautiful connection we share. ❤️
+    </p>
+</div>
+
+<!-- PHOTO -->
+<div id="photo" class="section">
+    <h2 style="color:white;">Our Beautiful Moments 📸</h2>
+    <div class="">
+        <div class="photo-container">
+            <img src="IMG_20230716_204938.jpg"
+            width="600" height="750">
+            <img src="IMG_20230721_124940.jpg"
+            width="600" height="750">
+            <img src="IMG_20230726_125249.jpg"
+             width="600" height="750">
+            <img src="IMG_20240218_121707.jpg"
+             width="600" height="750">
+            <img src="IMG_20240328_144430.jpg"
+             width="600" height="750">
+        </div>
+    </div>
+</div>
+
+<!-- GIFT -->
+<div id="gift" class="section">
+    <h2 style="color:white;">A Special Surprise 🎁</h2>
+
+    <!-- First Button -->
+    <div class="gift-box" onclick="openGift()">🎁</div>
+    <p style="color:white;">Click the gift...</p>
+
+    <!-- Hidden content -->
+    <div id="giftContent" class="hidden">
+        <button onclick="showHug()">Open Your Surprise 💖</button>
+    </div>
+
+    <!-- Hug -->
+    <div id="hugBox" class="hidden">
+        <p style="color:white;">This hug is for you 🤗</p>
+        <div class="hug">🧑‍🤝‍🧑</div>
+        <p style="color:white;">No matter what… I’m always with you ❤️</p>
+    </div>
+
+</div>
+
+<script>
+function show(id){
+    document.querySelectorAll('.section').forEach(s=>s.style.display="none");
+    document.getElementById(id).style.display="block";
+}
+
+/* Gift steps */
+function openGift(){
+    document.getElementById("giftContent").style.display="block";
+}
+function showHug(){
+    document.getElementById("hugBox").style.display="block";
+}
+
+/* Hearts */
+setInterval(()=>{
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤";
+    h.style.left=Math.random()*100+"%";
+    h.style.fontSize=(Math.random()*20+10)+"px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+},500);
+</script>
+
+</body>
+</html>
